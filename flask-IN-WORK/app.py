@@ -8,15 +8,18 @@ def index():
 
 @app.route('/register',methods=['GET', 'POST'])
 def register():
-    return render_template("register.html")
+    if request.method == 'GET':
+        return render_template("register.html")
 
 @app.route('/login',methods=['GET', 'POST'])
 def login():
-    return render_template("login.html")
+    if request.method == 'GET':
+        return render_template("login.html")
 
 @app.route('/forgot',methods=['GET', 'POST'])
 def forgot():
-    return render_template("forgot-password.html")
+    if request.method == 'GET':
+        return render_template("forgot-password.html")
 
 
 if __name__ == "__main__":
