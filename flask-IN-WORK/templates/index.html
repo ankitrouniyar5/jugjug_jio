@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Jug Jug Jio</title>
-  <link rel = "icon" href="{{ url_for('static',filename='img/logo_JJJ.png') }}">
+  <link rel = "icon" href="/img/logo.png">
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -16,22 +16,16 @@
   <!-- Bootstrap cdn -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <!-- icons cdn -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/icofont/icofont.min.css') }}">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Template Main CSS File -->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link href="{{ url_for('static',filename='css/style_onkit.css') }}" rel="stylesheet"> 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="/css/style.css" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#date" ).datepicker();
-  } );
-  </script>
+    <!-- icons cdn -->
+  <script src="https://kit.fontawesome.com/13147f0f03.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -40,15 +34,16 @@
   <div id="topbar" class="d-none d-sm-flex align-items-center fixed-top">
     <div class="container d-flex">
       <div class="contact-info mr-auto">
-        <i class="icofont-envelope"></i> <a href="info@jugjugjio.com">info@jugjugjio.com</a>
-        <i class="icofont-phone"></i> +9922211000
-        <i class="icofont-google-map"></i> Sector-16, Narela
+        <i class="fas fa-envelope"></i> <a href="info@jugjugjio.com">info@jugjugjio.com</a>
+        <i class="fas fa-phone"></i> +9922211000
+        <i class="fas fa-map-marker-alt"></i>Sector-16,Narela
       </div>
       <div class="social-links">
-        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        
+        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
       </div>
     </div>
   </div>
@@ -76,21 +71,10 @@
         <li class="nav-item">
             <a class="nav-link" href="#contact">Contact</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
       </ul>
     </div>
     <ul class="nav navbar-nav">
-    <li><a href="#appointment" class="appointment-btn">Make an Appointment</a></li>
+    <li><a href="#appointment" class="appointment-btn">Login</a></li>
     </ul>
 </nav>
 </header>
@@ -100,7 +84,8 @@
     <div class="container">
       <h1>Welcome to JugJug Jio Online</h1>
       <h2>Meet doctors online at any time with us.</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      <h2>Sign Up to get started.</h2>
+      <a href="#about" class="btn-get-started scrollto">Sign Up</a>
     </div>
 </section><!-- End Hero -->
 
@@ -127,34 +112,33 @@
         <div class="container-fluid">
             <div class="section-title">
                 <h2 class="text-center">About</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                <p class="text-center mt-3 px-5">Started with the aim of providing quality healthcare and valuable experience to all domestic and international patients. Our healthcare offerings are supported by a team of compassionate and dedicated medical professionals who have rich knowledge and experience in their respective domains.</p>
               </div>
   
           <div class="row">
             <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch">
-                <img src = "{{ url_for('static',filename='img/about-us-pic.jpg') }}"> 
+                <img src = "/img/about-us-pic.jpg" style="width: 400px; height: 600px">
             </div>
   
             <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-              <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-              <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+              
   
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                <h4 class="title"><a href="">Mission</a></h4>
+                <p class="description">To provide quality healthcare through investment in human resources, world-class medical technologies, and appropriate physical facilities and support services at an affordable cost.</p>
               </div>
   
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-gift"></i></div>
-                <h4 class="title"><a href="">Nemo Enim</a></h4>
-                <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                <h4 class="title"><a href="">Vision</a></h4>
+                <p class="description">To become a leading healthcare provider in the region and build a suitable platform for young talented doctors and health professionals to assume future leadership roles.</p>
               </div>
   
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-atom"></i></div>
-                <h4 class="title"><a href="">Dine Pad</a></h4>
-                <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                <h4 class="title"><a href="">Our Team</a></h4>
+                <p class="description">We have 85 professional doctors and more than 200 staff members dedicated towards treatment and care of the patients.</p>
               </div>
   
             </div>
@@ -209,13 +193,13 @@
           <div class="section-title">
             <h2 class="text-center">Services</h2>
             
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p class="text-center">Jugjug Jio is home to some of the most eminent doctors in the world.</p>
           </div>
   
           <div class="row">
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="icon-box">
-                <div class="icon"><i class="icofont-heart-beat"></i></div>
+                <div class="icon"><i class="fas fa-heartbeat"></i></div>
                 <h4><a href="">Every solution</a></h4>
                      <p>Not sure where to go for health problems?
                         No matter where you are, getting better is at your fingertips
@@ -227,7 +211,7 @@
   
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
               <div class="icon-box">
-                <div class="icon"><i class="icofont-drug"></i></div>
+                <div class="icon"><i class="far fa-clock"></i></div>
               <h4><a href="">At every hour</a></h4>
             </p>Sickness doesn’t follow a 9-5 schedule and neither do we. We’ve got you 
             covered with our 24/7 online clinic. Visit us at any time for diagnosis and treatment.</p>
@@ -237,7 +221,7 @@
   
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
               <div class="icon-box">
-                <div class="icon"><i class="icofont-dna-alt-2"></i></div>
+                <div class="icon"><i class="fas fa-users"></i></div>
                 <h4><a href="">For Everyone</a></h4>
                 <p>We’ve 85 highly qualified doctors, making us one of the best. We give you quick, quality care that starting at Rs 499.</p>
              </div>
@@ -320,19 +304,19 @@
           <div class="col-lg-4">
             <div class="info">
               <div class="address">
-                <i class="icofont-google-map"></i>
-                <h4>Location:</h4>
-                <p>Sector 16, Narela, DEL</p>
+                <i class="fas fa-map-marker-alt"></i>
+                  <h4>Location:</h4>
+                <p>Sector-16, Narela</p>
               </div>
 
               <div class="email">
-                <i class="icofont-envelope"></i>
+                <i class="fas fa-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@jugjugjio.com</p>
+                <p>info@example.com</p>
               </div>
 
               <div class="phone">
-                <i class="icofont-phone"></i>
+                <i class="fas fa-phone"></i>
                 <h4>Call:</h4>
                 <p>+1 5589 55488 55s</p>
               </div>
@@ -343,7 +327,7 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="" method="post" role="form" class="php-email-form">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="form-row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -378,61 +362,6 @@
 </section>
 <!-- End of contact section -->
 
-<!-- Book an appointment section -->
-<section id="appointment" class="appointment mt-4">
-    <div class="container">
-
-      <div class="section-title">
-        <h2 class="text-center">Make an Appointment</h2>
-        <p class="text-center">Why wait? Lets book an appointment now.</p>
-    </div>
-
-      <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
-        <div class="form-row">
-          <div class="col-md-4 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-            <div class="validate"></div>
-          </div>
-          <div class="col-md-4 form-group">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-            <div class="validate"></div>
-          </div>
-          <div class="col-md-4 form-group">
-            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-            <div class="validate"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-4 form-group">
-            <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars" autocomplete="off">
-            <div class="validate"></div>
-          </div>
-          <div class="col-md-4 form-group">
-            <select name="department" id="department" class="form-control">
-              <option value="">Select Department</option>
-              <option value="Department 1">Department 1</option>
-              <option value="Department 2">Department 2</option>
-              <option value="Department 3">Department 3</option>
-            </select>
-            <div class="validate"></div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-          <div class="validate"></div>
-        </div>
-        <!-- <div class="mb-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
-        </div> -->
-        <div class="text-center"><button type="submit" class="btn appointment-btn">Make an Appointment</button></div>
-      </form>
-
-    </div>
-  </section><!-- End Appointment Section -->
-
 <section id="footer" class="footer">
     <div class="footer-top">
 <div class="container footer-address mt-4">
@@ -452,11 +381,11 @@
             <h4>Useful Links</h4>
             <ul>
             <i class=""></i>
-              <li><i class="icofont-caret-right"></i> <a href="#">Home</a></li>
-              <li><i class="icofont-caret-right"></i> <a href="#">About us</a></li>
-              <li><i class="icofont-caret-right"></i> <a href="#">Services</a></li>
-              <li><i class="icofont-caret-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="icofont-caret-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="fas fa-caret-right"></i><a href="#">Home</a></li>
+              <li><i class="fas fa-caret-right"></i> <a href="#">About us</a></li>
+              <li><i class="fas fa-caret-right"></i> <a href="#">Services</a></li>
+              <li><i class="fas fa-caret-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="fas fa-caret-right"></i><a href="#">Privacy policy</a></li>
             </ul>
           </div>
     </div>
@@ -479,7 +408,7 @@
 
 <!-- Template Main JS File -->
 
-  <script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
+  <script src="/js/main.js"></script>
 
 </body>
 
