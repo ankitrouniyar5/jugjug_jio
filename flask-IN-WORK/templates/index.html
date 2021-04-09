@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Jug Jug Jio</title>
-  <link rel = "icon" href="/img/logo.png">
+  <link rel = "icon" href="{{ url_for('static',filename='img/logo_JJJ.png') }}">
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -20,7 +20,7 @@
 
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link href="/css/style.css" rel="stylesheet">
+  <link href="{{ url_for('static',filename='css/style_onkit.css') }}" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -117,7 +117,7 @@
   
           <div class="row">
             <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch">
-                <img src = "/img/about-us-pic.jpg" style="width: 400px; height: 600px">
+                <img src = "{{ url_for('static',filename='img/about-us-pic.jpg') }}" style="width: 400px; height: 600px">
             </div>
   
             <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
@@ -408,7 +408,7 @@
 
 <!-- Template Main JS File -->
 
-  <script src="/js/main.js"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
 
 </body>
 
