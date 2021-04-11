@@ -12,119 +12,42 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
-    <!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
 </head>
 
 <body>
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index.html" class="logo">
-					<img src="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png" width="35" height="35" alt=""> <span>JugJug Jio</span>
+				<a href="{{url_for('dashboard')}}" class="logo">
+					<img src="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png" width="35" height="35" alt=""> <span>Jug Jug Jio</span>
 				</a>
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
             <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
             <ul class="nav user-menu float-right">
-                <!-- <li class="nav-item dropdown d-none d-sm-block">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right">3</span></a>
-                    <div class="dropdown-menu notifications">
-                        <div class="topnav-dropdown-header">
-                            <span>Notifications</span>
-                        </div>
-                        <div class="drop-scroll">
-                            <ul class="notification-list">
-                                <li class="notification-message">
-                                    <a href="activities.html">
-                                        <div class="media">
-											<span class="avatar">
-												<img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
-											</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
-												<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-											</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="activities.html">
-                                        <div class="media">
-											<span class="avatar">V</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
-												<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-											</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="activities.html">
-                                        <div class="media">
-											<span class="avatar">L</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
-												<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-											</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="activities.html">
-                                        <div class="media">
-											<span class="avatar">G</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
-												<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-											</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="activities.html">
-                                        <div class="media">
-											<span class="avatar">V</span>
-											<div class="media-body">
-												<p class="noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
-												<p class="noti-time"><span class="notification-time">2 days ago</span></p>
-											</div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="topnav-dropdown-footer">
-                            <a href="activities.html">View all Notifications</a>
-                        </div>
-                    </div> -->
-               </li>
-                <!-- <li class="nav-item dropdown d-none d-sm-block">
-                    <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-danger float-right">8</span></a>
-                </li> -->
                 <li class="nav-item dropdown has-arrow">
-                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+					<a  href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+
                         <span class="user-img">
-							<img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+
+							<img class="rounded-circle" src="{{ url_for('static',filename='img/user.jpg') }}" width="24" alt="Admin">
 							<span class="status online"></span>
 						</span>
 						<span></span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
-						<a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+						<a class="dropdown-item" href="{{ url_for('profile') }}">My Profile</a>
+						<a class="dropdown-item" href="{{ url_for('edit_profile') }}">Edit Profile</a>
 						
-						<a class="dropdown-item" href="index.html">Logout</a>
+						<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
 					</div>
                 </li>
             </ul>
             <div class="dropdown mobile-user-menu float-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                    <a class="dropdown-item" href="{{ url_for('profile') }}">My Profile</a>
+                    <a class="dropdown-item" href="edit-{{ url_for('profile') }}">Edit Profile</a>
                     <a class="dropdown-item" href="login.html">Logout</a>
                 </div>
             </div>
@@ -135,51 +58,15 @@
                     <ul>
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a href="dashboard.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="{{ url_for('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
-						<!-- <li>
-                            <a href="doctors.html"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
-                        </li>
+
                         <li>
-                            <a href="patients.html"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
-                        </li> -->
-                        <li>
-                            <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                            <a href="{{url_for('appointments')}}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
                         </li>
-                        <!-- <li>
-                            <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
-                        </li> -->
-                        <!-- <li>
-                            <a href="departments.html"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
-                        </li>
-						<li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="employees.html">Employees List</a></li>
-								<li><a href="leaves.html">Leaves</a></li>
-								<li><a href="holidays.html">Holidays</a></li>
-								<li><a href="attendance.html">Attendance</a></li>
-							</ul>
-						</li>
-						<li class="submenu">
-							<a href="#"><i class="fa fa-money"></i> <span> Accounts </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="invoices.html">Invoices</a></li>
-								<li><a href="payments.html">Payments</a></li>
-								<li><a href="expenses.html">Expenses</a></li>
-								<li><a href="taxes.html">Taxes</a></li>
-								<li><a href="provident-fund.html">Provident Fund</a></li>
-							</ul>
-						</li>
-						<li class="submenu">
-							<a href="#"><i class="fa fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="salary.html"> Employee Salary </a></li>
-								<li><a href="salary-view.html"> Payslip </a></li>
-							</ul>
-						</li> -->
+
                         <li>
-                            <a href="chat.html"><i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">5</span></a>
+                            <a href="{{url_for('chat')}}"><i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">5</span></a>
                         </li>
                       
                             </ul>
@@ -190,6 +77,7 @@
         </div>
         <div class="page-wrapper">
             <div class="content">
+
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                         <div class="dash-widget">
@@ -261,7 +149,7 @@
 					<div class="col-12 col-md-6 col-lg-8 col-xl-8">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="appointments.html" class="btn btn-primary float-right">View all</a>
+								<h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="{{ url_for('appointments') }}" class="btn btn-primary float-right">View all</a>
 							</div>
 							<div class="card-body p-0">
 								<div class="table-responsive">
@@ -277,8 +165,8 @@
 										<tbody>
 											<tr>
 												<td style="min-width: 200px;">
-													<a class="avatar" href="profile.html">B</a>
-													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+													<a class="avatar" href="{{ url_for('profile') }}">B</a>
+													<h2><a href="{{ url_for('profile') }}">Bernardo Galaviz <span>New York, USA</span></a></h2>
 												</td>                 
 												<td>
 													<h5 class="time-title p-0">Appointment With</h5>
@@ -289,13 +177,13 @@
 													<p>7.00 PM</p>
 												</td>
 												<td class="text-right">
-													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+													<a href="{{ url_for('appointments') }}" class="btn btn-outline-primary take-btn">Take up</a>
 												</td>
 											</tr>
 											<tr>
 												<td style="min-width: 200px;">
-													<a class="avatar" href="profile.html">B</a>
-													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+													<a class="avatar" href="{{ url_for('profile') }}">B</a>
+													<h2><a href="{{ url_for('profile') }}">Bernardo Galaviz <span>New York, USA</span></a></h2>
 												</td>                 
 												<td>
 													<h5 class="time-title p-0">Appointment With</h5>
@@ -306,13 +194,13 @@
 													<p>7.00 PM</p>
 												</td>
 												<td class="text-right">
-													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+													<a href="{{ url_for('appointments') }}" class="btn btn-outline-primary take-btn">Take up</a>
 												</td>
 											</tr>
 											<tr>
 												<td style="min-width: 200px;">
-													<a class="avatar" href="profile.html">B</a>
-													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+													<a class="avatar" href="{{ url_for('profile') }}">B</a>
+													<h2><a href="{{ url_for('profile') }}">Bernardo Galaviz <span>New York, USA</span></a></h2>
 												</td>                 
 												<td>
 													<h5 class="time-title p-0">Appointment With</h5>
@@ -323,13 +211,13 @@
 													<p>7.00 PM</p>
 												</td>
 												<td class="text-right">
-													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+													<a href="{{ url_for('appointments') }}" class="btn btn-outline-primary take-btn">Take up</a>
 												</td>
 											</tr>
 											<tr>
 												<td style="min-width: 200px;">
-													<a class="avatar" href="profile.html">B</a>
-													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+													<a class="avatar" href="{{ url_for('profile') }}">B</a>
+													<h2><a href="{{ url_for('profile') }}">Bernardo Galaviz <span>New York, USA</span></a></h2>
 												</td>                 
 												<td>
 													<h5 class="time-title p-0">Appointment With</h5>
@@ -340,13 +228,13 @@
 													<p>7.00 PM</p>
 												</td>
 												<td class="text-right">
-													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+													<a href="{{ url_for('appointments') }}" class="btn btn-outline-primary take-btn">Take up</a>
 												</td>
 											</tr>
 											<tr>
 												<td style="min-width: 200px;">
-													<a class="avatar" href="profile.html">B</a>
-													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+													<a class="avatar" href="{{ url_for('profile') }}">B</a>
+													<h2><a href="{{ url_for('profile') }}">Bernardo Galaviz <span>New York, USA</span></a></h2>
 												</td>                 
 												<td>
 													<h5 class="time-title p-0">Appointment With</h5>
@@ -357,7 +245,7 @@
 													<p>7.00 PM</p>
 												</td>
 												<td class="text-right">
-													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+													<a href="{{ url_for('appointments') }}" class="btn btn-outline-primary take-btn">Take up</a>
 												</td>
 											</tr>
 										</tbody>
@@ -376,7 +264,7 @@
                                     <li>
                                         <div class="contact-cont">
                                             <div class="float-left user-img m-r-10">
-                                                <a href="profile.html" title="John Doe"><img src="assets/img/user.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                                <a href="{{ url_for('profile') }}" title="John Doe"><img src="{{url_for('static',filename='img/user.jpg')}}" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
                                             </div>
                                             <div class="contact-info">
                                                 <span class="contact-name text-ellipsis">John Doe</span>
@@ -387,7 +275,7 @@
                                     <li>
                                         <div class="contact-cont">
                                             <div class="float-left user-img m-r-10">
-                                                <a href="profile.html" title="Richard Miles"><img src="assets/img/user.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                                <a href="{{ url_for('profile') }}" title="Richard Miles"><img src="{{url_for('static',filename='img/user.jpg')}}" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
                                             </div>
                                             <div class="contact-info">
                                                 <span class="contact-name text-ellipsis">Richard Miles</span>
@@ -398,7 +286,7 @@
                                     <li>
                                         <div class="contact-cont">
                                             <div class="float-left user-img m-r-10">
-                                                <a href="profile.html" title="John Doe"><img src="assets/img/user.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                                <a href="{{ url_for('profile') }}" title="John Doe"><img src="{{url_for('static',filename='img/user.jpg')}}" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
                                             </div>
                                             <div class="contact-info">
                                                 <span class="contact-name text-ellipsis">John Doe</span>
@@ -409,7 +297,7 @@
                                     <li>
                                         <div class="contact-cont">
                                             <div class="float-left user-img m-r-10">
-                                                <a href="profile.html" title="Richard Miles"><img src="assets/img/user.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                                <a href="{{ url_for('profile') }}" title="Richard Miles"><img src="{{url_for('static',filename='img/user.jpg')}}" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
                                             </div>
                                             <div class="contact-info">
                                                 <span class="contact-name text-ellipsis">Richard Miles</span>
@@ -420,7 +308,7 @@
                                     <li>
                                         <div class="contact-cont">
                                             <div class="float-left user-img m-r-10">
-                                                <a href="profile.html" title="John Doe"><img src="assets/img/user.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                                <a href="{{ url_for('profile') }}" title="John Doe"><img src="{{url_for('static',filename='img/user.jpg')}}" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
                                             </div>
                                             <div class="contact-info">
                                                 <span class="contact-name text-ellipsis">John Doe</span>
@@ -431,7 +319,7 @@
                                     <li>
                                         <div class="contact-cont">
                                             <div class="float-left user-img m-r-10">
-                                                <a href="profile.html" title="Richard Miles"><img src="assets/img/user.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                                <a href="{{ url_for('profile') }}" title="Richard Miles"><img src="{{url_for('static',filename='img/user.jpg')}}" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
                                             </div>
                                             <div class="contact-info">
                                                 <span class="contact-name text-ellipsis">Richard Miles</span>
@@ -459,7 +347,7 @@
 										<tbody>
 											<tr>
 												<td>
-													<img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+													<img width="28" height="28" class="rounded-circle" src="{{url_for('static',filename='img/user.jpg')}}" alt="">
 													<h2>John Doe</h2>
 												</td>
 												<td>Johndoe21@gmail.com</td>
@@ -468,7 +356,7 @@
 											</tr>
 											<tr>
 												<td>
-													<img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+													<img width="28" height="28" class="rounded-circle" src="{{url_for('static',filename='img/user.jpg')}}" alt="">
 													<h2>Richard</h2>
 												</td>
 												<td>Richard123@yahoo.com</td>
@@ -477,7 +365,7 @@
 											</tr>
 											<tr>
 												<td>
-													<img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+													<img width="28" height="28" class="rounded-circle" src="{{url_for('static',filename='img/user.jpg')}}" alt="">
 													<h2>Villiam</h2>
 												</td>
 												<td>Richard123@yahoo.com</td>
@@ -486,7 +374,7 @@
 											</tr>
 											<tr>
 												<td>
-													<img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+													<img width="28" height="28" class="rounded-circle" src="{{url_for('static',filename='img/user.jpg')}}" alt="">
 													<h2>Martin</h2>
 												</td>
 												<td>Richard123@yahoo.com</td>
@@ -777,13 +665,13 @@
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-	<script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/Chart.bundle.js"></script>
-    <script src="assets/js/chart.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="{{url_for('static',filename='js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.slimscroll.js')}}"></script>
+    <script src="{{url_for('static',filename='js/Chart.bundle.js')}}"></script>
+    <script src="{{url_for('static',filename='js/chart.js')}}"></script>
+    <script src="{{url_for('static',filename='js/app.js')}}"></script>
 
 </body>
 

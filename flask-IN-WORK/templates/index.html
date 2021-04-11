@@ -39,7 +39,7 @@
         <i class="fas fa-map-marker-alt"></i>Sector-16,Narela
       </div>
       <div class="social-links">
-        
+
         <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
         <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
@@ -47,16 +47,16 @@
       </div>
     </div>
   </div>
-  
+
 
   <!-- Header -->
   <header id="header" class="fixed-top">
   <nav class="navbar navbar-expand-lg navbar-light">
-    <h1 class="navbar-brand logo mr-auto"><a href="#">JugJug Jio</a></h1>
+    <h1 class="navbar-brand logo mr-auto"><a href="#">Jug Jug Jio</a></h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="nav navbar-nav">
         <li class="nav-item active">
@@ -73,19 +73,38 @@
         </li>
       </ul>
     </div>
-    <ul class="nav navbar-nav">
-    <li><a href="#appointment" class="appointment-btn">Login</a></li>
+     {% if current_user.is_authenticated %}
+      <ul class="nav navbar-nav">
+    <li><a class="appointment-btn" href="{{ url_for('dashboard')}}">Dashboard</a></li>
     </ul>
+      <ul class="nav navbar-nav">
+    <li><a class="appointment-btn" href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+              {% else %}
+                    <ul class="nav navbar-nav">
+    <li><a href="{{ url_for('login') }}" class="appointment-btn">Login</a></li>
+    </ul>
+              {% endif %}
 </nav>
 </header>
 
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="align-items-center">
     <div class="container">
-      <h1>Welcome to JugJug Jio Online</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <h3 class="alert alert-{{ category }}">{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+      <h1>Welcome to Jug Jug Jio Online</h1>
       <h2>Meet doctors online at any time with us.</h2>
-      <h2>Sign Up to get started.</h2>
-      <a href="#about" class="btn-get-started scrollto">Sign Up</a>
+        {% if current_user.is_authenticated %}
+        {% else %}
+      <h2>Login to get started.</h2>
+      <a href="{{ url_for('login') }}" class="btn-get-started scrollto">Login</a>
+        {% endif %}
     </div>
 </section><!-- End Hero -->
 
@@ -100,10 +119,10 @@
               <p class="card-text">As communication barriers are declining with the advent of telecommunications, doctors are now becoming more and more agile. With Telemedicine, you can now consult them from wherever you are, using your smart phone or computer screen.</p>
             </div>
         </div>
-            
+
         </div>
     </div>
-       
+
     </div>
 </section>
 
@@ -114,88 +133,88 @@
                 <h2 class="text-center">About</h2>
                 <p class="text-center mt-3 px-5">Started with the aim of providing quality healthcare and valuable experience to all domestic and international patients. Our healthcare offerings are supported by a team of compassionate and dedicated medical professionals who have rich knowledge and experience in their respective domains.</p>
               </div>
-  
+
           <div class="row">
             <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch">
                 <img src = "{{ url_for('static',filename='img/about-us-pic.jpg') }}" style="width: 400px; height: 600px">
             </div>
-  
+
             <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-              
-  
+
+
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-fingerprint"></i></div>
                 <h4 class="title"><a href="">Mission</a></h4>
                 <p class="description">To provide quality healthcare through investment in human resources, world-class medical technologies, and appropriate physical facilities and support services at an affordable cost.</p>
               </div>
-  
+
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-gift"></i></div>
                 <h4 class="title"><a href="">Vision</a></h4>
                 <p class="description">To become a leading healthcare provider in the region and build a suitable platform for young talented doctors and health professionals to assume future leadership roles.</p>
               </div>
-  
+
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-atom"></i></div>
                 <h4 class="title"><a href="">Our Team</a></h4>
                 <p class="description">We have 85 professional doctors and more than 200 staff members dedicated towards treatment and care of the patients.</p>
               </div>
-  
+
             </div>
           </div>
-  
+
         </div>
       </section><!-- End About Section -->
 
        <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
         <div class="container">
-  
+
           <div class="row">
-  
+
             <div class="col-lg-3 col-md-6">
               <div class="count-box">
                 <span>85</span>
                 <p>Doctors</p>
               </div>
             </div>
-  
+
             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
               <div class="count-box">
                 <span>18</span>
                 <p>Departments</p>
               </div>
             </div>
-  
+
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
               <div class="count-box">
                 <span>8</span>
                 <p>Research Labs</p>
               </div>
             </div>
-  
+
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
               <div class="count-box">
                 <span>150</span>
                 <p>Awards</p>
               </div>
             </div>
-  
+
           </div>
-  
+
         </div>
       </section><!-- End Counts Section -->
 
-      
+
 <section id="services" class="services">
         <div class="container">
-  
+
           <div class="section-title">
             <h2 class="text-center">Services</h2>
-            
+
             <p class="text-center">Jugjug Jio is home to some of the most eminent doctors in the world.</p>
           </div>
-  
+
           <div class="row">
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="icon-box">
@@ -205,20 +224,20 @@
                         No matter where you are, getting better is at your fingertips
                         whether you’re in line for coffee or waiting for a flight.
                     </p>
-                
+
               </div>
             </div>
-  
+
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
               <div class="icon-box">
                 <div class="icon"><i class="far fa-clock"></i></div>
               <h4><a href="">At every hour</a></h4>
-            </p>Sickness doesn’t follow a 9-5 schedule and neither do we. We’ve got you 
+            </p>Sickness doesn’t follow a 9-5 schedule and neither do we. We’ve got you
             covered with our 24/7 online clinic. Visit us at any time for diagnosis and treatment.</p>
-            
+
               </div>
             </div>
-  
+
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
               <div class="icon-box">
                 <div class="icon"><i class="fas fa-users"></i></div>
@@ -226,26 +245,26 @@
                 <p>We’ve 85 highly qualified doctors, making us one of the best. We give you quick, quality care that starting at Rs 499.</p>
              </div>
             </div>
-  
-  
+
+
           </div>
-  
-        </div>    
-</section><!-- End Services Section -->      
+
+        </div>
+</section><!-- End Services Section -->
 
 <!--Speciality care section-->
     <section id = "speciality-care" class = "speciality-care">
         <div class="container">
-  
+
             <div class="section-title">
               <h2 class="text-center">Commonly Treated Conditions</h2>
-              
+
               <p class="text-center"> Jugjug Jio has specialists available for virtual visits on demand to treat a variety of issues related to these areas:</p>
             </div>
-        </div>  
-         
+        </div>
+
         <div class="specialities">
-             
+
         <div class="row">
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
                 <p class="text-center">Allergies (Seasonal)</p>
@@ -285,8 +304,8 @@
             </div>
         </div>
         </div>
-        
-          
+
+
     </section>
 <!----End of speciality-care------->
 
@@ -294,10 +313,10 @@
     <div class="container">
         <div class="section-title">
           <h2 class="text-center mt-4">Contact</h2>
-          
+
           <p class="text-center">Got queries? We are ready to help 24/7.</p>
         </div>
-    </div>  
+    </div>
     <div class="container">
         <div class="row mt-5">
 
@@ -358,7 +377,7 @@
 
         </div>
 
-      </div>    
+      </div>
 </section>
 <!-- End of contact section -->
 
@@ -404,7 +423,7 @@
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!-- Template Main JS File -->
 

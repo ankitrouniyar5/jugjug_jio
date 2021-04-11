@@ -7,45 +7,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png">
-    <title>JugJug Jio</title>
+    <title>Jug Jug Jio</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
-    <!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
+
 </head>
 
 <body>
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index.html" class="logo">
-					<img src="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png" width="35" height="35" alt=""> <span>JugJug Jio</span>
+				<a href="{{url_for('dashboard')}}" class="logo">
+					<img src="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png" width="35" height="35" alt=""> <span>Jug Jug Jio</span>
 				</a>
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
             <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
             <ul class="nav user-menu float-right">
 
-            
-
-                
-                </li>
-
                 <li class="nav-item dropdown has-arrow">
-                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
-                        <span class="user-img"><img class="rounded-circle" src="assets/img/user.jpg" width="40" alt="Admin">
-							<span class="status online"></span></span>
-                      
+					<a  href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+
+                        <span class="user-img">
+
+							<img class="rounded-circle" src="{{ url_for('static',filename='img/user.jpg') }}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span></span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
-						<a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-						<a class="dropdown-item" href="index.html">Logout</a>
+						<a class="dropdown-item" href="{{ url_for('profile') }}">My Profile</a>
+						<a class="dropdown-item" href="{{ url_for('edit_profile') }}">Edit Profile</a>
+
+						<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
 					</div>
                 </li>
             </ul>
@@ -63,21 +60,18 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         <li class="menu-title">Main</li>
+                        <li class="active">
+                            <a href="{{ url_for('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+
                         <li>
-                            <a href="dashboard.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="{{url_for('appointments')}}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
                         </li>
-					
+
                         <li>
-                            <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                            <a href="{{url_for('chat')}}"><i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">5</span></a>
                         </li>
-                        <!-- <li>
-                            <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
-                        </li>
-                        -->
-                        <li>
-                            <a href="chat.html"><i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">5</span></a>
-                        </li>
-                       
+
                             </ul>
                         </li>
                     </ul>
@@ -88,52 +82,104 @@
    
         <div class="page-wrapper">
             <div class="content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <h3 class="alert alert-{{ category }}">{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
                 <div class="row">
                     <div class="col-sm-12">
                         <h4 class="page-title">Edit Profile</h4>
                     </div>
                 </div>
-                <form>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
                     <div class="card-box">
                         <h3 class="card-title">Basic Informations</h3>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="profile-img-wrap">
-                                    <img class="inline-block" src="assets/img/user.jpg" alt="user">
+                                    <img class="inline-block" src="{{ image_file }}" alt="user">
                                     <div class="fileupload btn">
-                                        <span class="btn-text">edit</span>
-                                        <input class="upload" type="file">
+                                        <span class="btn-text">{{ form.picture.label() }}</span>
+
+                    {{ form.picture(class="upload") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+
+
                                     </div>
                                 </div>
                                 <div class="profile-basic">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <label class="focus-label">First Name</label>
-                                                <input type="text" class="form-control floating" value="John">
+                                                {{ form.firstname.label(class="focus-label") }}
+                                                {% if form.firstname.errors %}
+                                                {{ form.firstname(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.firstname.errors %}
+                                                  <span>{{ error }}</span>
+                                                   {% endfor %}
+                                                     </div>
+                                                   {% else %}
+                                                   {{ form.firstname(class="form-control floating") }}
+                                                {% endif %}
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <label class="focus-label">Last Name</label>
-                                                <input type="text" class="form-control floating" value="Doe">
+                                                {{ form.lastname.label(class="focus-label") }}
+                                                {% if form.lastname.errors %}
+                                                {{ form.lastname(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.lastname.errors %}
+                                                  <span>{{ error }}</span>
+                                                   {% endfor %}
+                                                     </div>
+                                                   {% else %}
+                                                   {{ form.lastname(class="form-control floating") }}
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <label class="focus-label">Birth Date</label>
+                                                {{ form.dob.label(class="focus-label") }}
+                                                {% if form.dob.errors %}
+                                                {{ form.dob(class="form-control floating is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.dob.errors %}
+                                                  <span>{{ error }}</span>
+                                                   {% endfor %}
+                                                     </div>
+                                                   {% else %}
                                                 <div class="cal-icon">
-                                                    <input class="form-control floating datetimepicker" type="text" value="05/06/1985">
+                                                    {{ form.dob(class="form-control floating ") }}
                                                 </div>
+
+                                                {% endif %}
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus select-focus">
-                                                <label class="focus-label">Gendar</label>
-                                                <select class="select form-control floating">
-                                                    <option value="male selected">Male</option>
-                                                    <option value="female">Female</option>
-                                                </select>
+                                                {{ form.department.label(class="focus-label") }}
+                                                {% if form.department.errors %}
+                                                {{ form.department(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.department.errors %}
+                                                  <span>{{ error }}</span>
+                                                   {% endfor %}
+                                                     </div>
+                                                   {% else %}
+                                                   {{ form.department(class="form-control floating") }}
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -146,32 +192,77 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group form-focus">
-                                    <label class="focus-label">Address</label>
-                                    <input type="text" class="form-control floating" value="4487 Snowbird Lane">
+                                     {{ form.address.label(class="focus-label") }}
+                                                {% if form.address.errors %}
+                                                {{ form.address(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.address.errors %}
+                                                     <span>{{ error }}</span>
+                                                     {% endfor %}
+                                                 </div>
+                                    {% else %}
+                                    {{ form.address(class="form-control floating") }}
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-focus">
-                                    <label class="focus-label">State</label>
-                                    <input type="text" class="form-control floating" value="New York">
+                                    {{ form.state.label(class="focus-label") }}
+                                                {% if form.state.errors %}
+                                                {{ form.state(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.state.errors %}
+                                                     <span>{{ error }}</span>
+                                                     {% endfor %}
+                                                 </div>
+                                    {% else %}
+                                    {{ form.state(class="form-control floating") }}
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-focus">
-                                    <label class="focus-label">Country</label>
-                                    <input type="text" class="form-control floating" value="United States">
+                                    {{ form.country.label(class="focus-label") }}
+                                                {% if form.country.errors %}
+                                                {{ form.country(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.country.errors %}
+                                                     <span>{{ error }}</span>
+                                                     {% endfor %}
+                                                 </div>
+                                    {% else %}
+                                    {{ form.country(class="form-control floating") }}
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-focus">
-                                    <label class="focus-label">Pin Code</label>
-                                    <input type="text" class="form-control floating" value="10523">
+                                    {{ form.pincode.label(class="focus-label") }}
+                                                {% if form.pincode.errors %}
+                                                {{ form.pincode(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.pincode.errors %}
+                                                     <span>{{ error }}</span>
+                                                     {% endfor %}
+                                                 </div>
+                                    {% else %}
+                                    {{ form.pincode(class="form-control floating") }}
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-focus">
-                                    <label class="focus-label">Phone Number</label>
-                                    <input type="text" class="form-control floating" value="631-889-3206">
+                                    {{ form.phoneno.label(class="focus-label") }}
+                                                {% if form.phoneno.errors %}
+                                                {{ form.phoneno(class="form-control  is-invalid") }}
+                                                 <div class="invalid-feedback">
+                                                  {% for error in form.phoneno.errors %}
+                                                     <span>{{ error }}</span>
+                                                     {% endfor %}
+                                                 </div>
+                                    {% else %}
+                                    {{ form.phoneno(class="form-control floating") }}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -180,7 +271,7 @@
                    
                 
                     <div class="text-center m-t-20">
-                        <button class="btn btn-primary submit-btn" type="button">Save</button>
+                        {{ form.submit(class="btn btn-primary submit-btn") }}
                     </div>
                 </form>
             </div>
@@ -190,14 +281,15 @@
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-	<script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/select2.min.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="{{url_for('static',filename='js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.slimscroll.js')}}"></script>
+    <script src="{{url_for('static',filename='js/Chart.bundle.js')}}"></script>
+	<script src="{{url_for('static',filename='js/select2.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/moment.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/app.js')}}"></script>
 </body>
 
 
