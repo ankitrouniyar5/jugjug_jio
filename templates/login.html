@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- login23:11-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png">
+    <title>Jug Jug Jio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+
+<!-- if we click the logo the page will be redirected to index.html, which is the initial landing page -->
+
+<body>
+    <div class="main-wrapper account-wrapper">
+        <div class="account-page">
+			<div class="account-center">
+
+				<div class="account-box">
+
+                    <form method="POST" class="form-signin">
+                        {{form.hidden_tag()}}
+						<div class="account-logo">
+                            <a href="index.html"><img src="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png" alt=""></a>
+                        </div>
+                        <div class="form-group">
+                            {{ form.email.label(class="form-control-label") }}
+                            {% if form.email.errors %}
+                            {{ form.email(class="form-control  is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label(class="form-control-label") }}
+                            {% if form.password.errors %}
+                            {{ form.password(class="form-control  is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                        </div>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <h5 class="alert alert-{{ category }}">{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+                        <div class="form-group text-right">
+                            <a href="{{url_for('forgot')}}">Forgot your password?</a>
+                        </div>
+
+                        <div class="form-group text-center">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+
+                        <div class="text-center register-link">
+                            Don’t have an account? <a href="{{url_for('register')}}">Register Now</a>
+                        </div>
+                    </form>
+                </div>
+			</div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script> 
+	<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script> 
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script> 
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script> 
+</body>
+
+
+<!-- login23:12-->
+</html>

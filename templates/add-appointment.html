@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- add-appointment24:07-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png">
+    <title>JugJug Jio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+			<div class="header-left">
+				<a href="{{url_for('dashboard')}}" class="logo">
+					<img src="https://raw.githubusercontent.com/ankitrouniyar5/jugjug_jio/master/public/img/logo.png" width="35" height="35" alt=""> <span>Jug Jug Jio</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+
+                <li class="nav-item dropdown has-arrow">
+					<a  href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+
+                        <span class="user-img">
+
+							<img class="rounded-circle" src="{{ url_for('static',filename='img/user.jpg') }}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span></span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ url_for('profile') }}">My Profile</a>
+						<a class="dropdown-item" href="{{ url_for('edit_profile') }}">Edit Profile</a>
+
+						<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                    <a class="dropdown-item" href="index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li>
+                            <a href="{{url_for('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{url_for('appointments')}}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                        </li>
+
+                        <li>
+                            <a href="{{url_for('chat')}}"><i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">5</span></a>
+                        </li>
+                            </ul>
+                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Add Appointment</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+										<label>Appointment ID</label>
+										<input class="form-control" type="text" value="APT-0001" readonly="">
+									</div>
+                                </div>
+                                <div class="col-md-6">
+									<div class="form-group">
+										<label>Patient Name</label>
+										<input type="text" class="form-control">
+									</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Department</label>
+                                        <select class="select">
+                                            <option>Select</option>
+                                            <option>Dentists</option>
+                                            <option>Neurology</option>
+                                            <option>Opthalmology</option>
+                                            <option>Orthopedics</option>
+                                            <option>Cancer Department</option>
+                                            <option>ENT Department</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Doctor</label>
+                                        <select class="select">
+											<option>Select</option>
+											<option>Cristina Groves</option>
+											<option>Marie Wells</option>
+											<option>Henry Daniels</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <div class="cal-icon">
+                                            <input type="text" class="form-control datetimepicker">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Time</label>
+                                        <div class="time-icon">
+                                            <input type="text" class="form-control" id="datetimepicker3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Patient Email</label>
+                                        <input class="form-control" type="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Patient Phone Number</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="display-block">Appointment Status</label>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="status" id="product_active" value="option1" checked>
+									<label class="form-check-label" for="product_active">
+									Active
+									</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="status" id="product_inactive" value="option2">
+									<label class="form-check-label" for="product_inactive">
+									Inactive
+									</label>
+								</div>
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Create Appointment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+			
+					
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+    <script src="{{url_for('static',filename='js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.slimscroll.js')}}"></script>
+    <script src="{{url_for('static',filename='js/chart.js')}}"></script>
+    <script src="{{url_for('static',filename='js/app.js')}}"></script>
+	<script src="{{url_for('static',filename='js/select2.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/moment.min.js')}}"></script>
+	<script>
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+
+                });
+            });
+     </script>
+</body>
+
+
+<!-- add-appointment24:07-->
+</html>
