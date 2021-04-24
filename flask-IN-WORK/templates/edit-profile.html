@@ -69,7 +69,7 @@
                         </li>
 
                         <li>
-                            <a href="{{url_for('chat')}}"><i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">5</span></a>
+                            <a href="{{url_for('chat')}}"><i class="fa fa-comments"></i> <span>Chat</span> </a>
                         </li>
 
                             </ul>
@@ -167,21 +167,23 @@
 
                                             </div>
                                         </div>
+                                        {% if current_user.designation=='Doctor' %}
                                         <div class="col-md-6">
                                             <div class="form-group form-focus select-focus">
                                                 {{ form.department.label(class="focus-label") }}
                                                 {% if form.department.errors %}
-                                                {{ form.department(class="form-control  is-invalid") }}
+                                                {{ form.department(class="select  is-invalid") }}
                                                  <div class="invalid-feedback">
                                                   {% for error in form.department.errors %}
                                                   <span>{{ error }}</span>
                                                    {% endfor %}
                                                      </div>
                                                    {% else %}
-                                                   {{ form.department(class="form-control floating") }}
+                                                   {{ form.department(class="select") }}
                                                 {% endif %}
                                             </div>
                                         </div>
+                                        {%endif%}
                                     </div>
                                 </div>
                             </div>

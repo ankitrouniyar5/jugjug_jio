@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField,FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField , RadioField,DateField,IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField , RadioField,IntegerField,TextAreaField,SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
-
+from wtforms.fields.html5 import DateField,DateTimeField
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
@@ -27,7 +27,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-class EditProfileForm(FlaskForm):
+class EditProfileFormPat(FlaskForm):
     firstname = StringField('First Name',
                            validators=[DataRequired(), Length(min=2, max=20)])
     lastname = StringField('Last Name',
@@ -41,7 +41,36 @@ class EditProfileForm(FlaskForm):
                         validators=[DataRequired()])
     pincode=IntegerField('Pincode',validators=[DataRequired()])
     phoneno=IntegerField('Phone Number',validators=[DataRequired()])
-    department=StringField('Department')
     picture = FileField('edit', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
+class EditProfileFormDoc(FlaskForm):
+    firstname = StringField('First Name',
+                           validators=[DataRequired(), Length(min=2, max=20)])
+    lastname = StringField('Last Name',
+                            validators=[DataRequired(), Length(min=0, max=20)])
+    dob=StringField('Birth Date',validators=[DataRequired()])
+    address = StringField('Address',
+                           validators=[DataRequired()])
+    state=StringField('State',
+                           validators=[DataRequired()])
+    country = StringField('Country',
+                        validators=[DataRequired()])
+    pincode=IntegerField('Pincode',validators=[DataRequired()])
+    phoneno=IntegerField('Phone Number',validators=[DataRequired()])
+    dropdown = [('Physician', 'Physician'), ('Oncologist', 'Oncologist'), ('Orthopedic', 'Orthopedic')]
+    department = SelectField('Department', choices=dropdown)
+    picture = FileField('edit', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Update')
+
+class MakeAppointmentForm(FlaskForm):
+    dropdown=[('Physician','Physician'),('Oncologist','Oncologist'),('Orthopedic','Orthopedic')]
+    department=SelectField('Department',choices=dropdown , validators=[DataRequired()])
+    message=TextAreaField('Message(optional)')
+    date=DateField('Date',validators=[DataRequired()])
+    time=StringField('Time', validators=[DataRequired()])
+    submit=SubmitField('Create Appointment')
+
+class ChatForm(FlaskForm):
+    apid = IntegerField('Appointment ID', validators=[DataRequired()])
+    submit = SubmitField('Join Chat')

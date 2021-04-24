@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fullcalendar.css') }}">
 
 </head>
 
@@ -69,7 +70,7 @@
                         </li>
 
                         <li>
-                            <a href="{{url_for('chat')}}"><i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">5</span></a>
+                            <a href="{{url_for('chat')}}"><i class="fa fa-comments"></i> <span>Chat</span></a>
                         </li>
                             </ul>
                         </li>
@@ -88,101 +89,53 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form>
+                        <form method="POST">
+                            {{form.hidden_tag()}}
+                            {{form.csrt_token}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-										<label>Appointment ID</label>
-										<input class="form-control" type="text" value="APT-0001" readonly="">
-									</div>
-                                </div>
-                                <div class="col-md-6">
-									<div class="form-group">
-										<label>Patient Name</label>
-										<input type="text" class="form-control">
-									</div>
-                                </div>
+                                        {{form.department.label(class="form-control-label")}}
+                                        {% if form.department.errors %}
+                            {{ form.department(class="select is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.department.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Department</label>
-                                        <select class="select">
-                                            <option>Select</option>
-                                            <option>Dentists</option>
-                                            <option>Neurology</option>
-                                            <option>Opthalmology</option>
-                                            <option>Orthopedics</option>
-                                            <option>Cancer Department</option>
-                                            <option>ENT Department</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Doctor</label>
-                                        <select class="select">
-											<option>Select</option>
-											<option>Cristina Groves</option>
-											<option>Marie Wells</option>
-											<option>Henry Daniels</option>
-                                        </select>
+                    {% else %}
+                        {{ form.department(class="select form-control") }}
+                    {% endif %}
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Date</label>
+                                        {{form.date.label(class="form-control-label")}}
                                         <div class="cal-icon">
-                                            <input type="text" class="form-control datetimepicker">
+                                            {{form.date(class="form-control datetimepicker")}}
+                                            {{ form.hidden_tag() }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Time</label>
-                                        <div class="time-icon">
-                                            <input type="text" class="form-control" id="datetimepicker3">
+                                        {{form.time.label(class="form-control-label",for="input_starttime")}}
+                                        <div class="time-icon" >
+                                            {{form.time(type="time",id="inputMDEx1",class="form-control",placeholder="hh/mm/ss")}}
+                                            {{ form.hidden_tag() }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Patient Email</label>
-                                        <input class="form-control" type="email">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Patient Phone Number</label>
-                                        <input class="form-control" type="text">
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group">
-                                <label>Message</label>
-                                <textarea cols="30" rows="4" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="display-block">Appointment Status</label>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="status" id="product_active" value="option1" checked>
-									<label class="form-check-label" for="product_active">
-									Active
-									</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="status" id="product_inactive" value="option2">
-									<label class="form-check-label" for="product_inactive">
-									Inactive
-									</label>
-								</div>
+                                {{form.message.label(class="form-control-label")}}
+                                {{form.message(cols="30",rows="4",class="form-control")}}
                             </div>
                             <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn">Create Appointment</button>
+                                {{ form.submit(class="btn btn-primary submit-btn") }}
                             </div>
                         </form>
                     </div>
@@ -202,6 +155,8 @@
     <script src="{{url_for('static',filename='js/chart.js')}}"></script>
     <script src="{{url_for('static',filename='js/app.js')}}"></script>
 	<script src="{{url_for('static',filename='js/select2.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/jquery.fullcalendar.js')}}"></script>
+    <script src="{{url_for('static',filename='js/fullcalendar.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/moment.min.js')}}"></script>
 	<script>
@@ -212,6 +167,13 @@
                 });
             });
      </script>
+    <script>
+            $('#input_starttime').pickatime({
+            // 12 or 24 hour
+            twelvehour: true,
+            });
+     </script>
+
 </body>
 
 
